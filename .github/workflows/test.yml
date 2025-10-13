@@ -1,0 +1,19 @@
+name: Test Self-Hosted Runner
+on: push
+
+jobs:
+  test:
+    runs-on: self-hosted
+    steps:
+      - name: Say hello
+        run: echo "Hello from Firecracker VM!"
+      
+      - name: Show system info
+        run: |
+          uname -a
+          hostname
+          df -h
+          free -m
+      
+      - name: Test internet
+        run: curl -I https://google.com
