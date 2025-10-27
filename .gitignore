@@ -1,0 +1,65 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+.venv/
+venv/
+env/
+
+# Logs
+logs/
+*.log
+firecracker*.log
+
+# VM runtime files
+*.ext4.tmp
+ubuntu-24.04-vm*.ext4
+/tmp/
+
+# VM base images (too large for git)
+infrastructure/images/*.ext4
+infrastructure/images/*.squashfs*
+infrastructure/images/vmlinux-*
+infrastructure/images/runner-build-files/
+
+# Firecracker binaries (downloadable from github releases)
+infrastructure/bin/
+
+# External dependencies (node installations, etc)
+infrastructure/externals/
+
+# Sockets and PIDs
+*.socket
+*.pid
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# Next.js
+frontend/.next/
+frontend/out/
+frontend/node_modules/
+frontend/.env.local
+frontend/.env.production
+
+# Database
+*.db
+*.sqlite
+
+# Sensitive
+*.pem
+infrastructure/keys/*
+!infrastructure/keys/.gitkeep
+backend/vm_config.py
+.env
+.env.local
+
+# Documentation
+docs/
