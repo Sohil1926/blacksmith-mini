@@ -4,7 +4,7 @@ import subprocess
 import time
 import os
 import sys
-from .vm_config import *
+from vm_config import *
 
 class VMManager:
     def __init__(self):
@@ -110,7 +110,7 @@ class VMManager:
             # Start VM using bash script
             result = subprocess.run(
                 ['./infrastructure/scripts/start_vm.sh', str(vm_id)],
-                cwd=os.path.expanduser('~/firecracker-demo'),
+                cwd=PROJECT_ROOT,
                 capture_output=True,
                 text=True,
                 timeout=30
@@ -394,7 +394,7 @@ class VMManager:
             
             # Clean up VM-specific files
             try:
-                rootfs = f"/home/sohilathare/firecracker-demo/ubuntu-24.04-vm{vm_id}.ext4"
+                rootfs = os.path.join(INFRASTRUCTURE_PATH, f"images/ubuntu-24.04-vm{vm_id}.ext4")
                 if os.path.exists(rootfs):
                     os.remove(rootfs)
                     print(f"[VM {vm_id}] Cleaned up rootfs copy")

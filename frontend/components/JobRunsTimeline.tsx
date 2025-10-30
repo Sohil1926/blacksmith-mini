@@ -1,35 +1,42 @@
 'use client';
 
 import { useState } from 'react';
+import { useVMData } from '@/hooks/useVMData';
 
 const iconRunning = "http://localhost:3845/assets/80902fe570fdd51433fad0421bd80f636531591d.svg";
 const iconSuccess = "http://localhost:3845/assets/73ce733df6af2b8a65fdabaa6d3b9bcee15cac15.svg";
 const iconFailed = "http://localhost:3845/assets/ead0f78b7a42516342261b6f108c8d3a136ac0a7.svg";
 
-interface Job {
-  name: string;
-  status: 'RUNNING' | 'SUCCESS' | 'FAILED';
-}
-
-const jobs: Job[] = [
-  { name: 'Test', status: 'RUNNING' },
-  { name: 'build', status: 'SUCCESS' },
-  { name: 'lint', status: 'SUCCESS' },
-  { name: 'test-ete', status: 'FAILED' },
-  { name: 'test-ete', status: 'FAILED' },
-  { name: 'lint', status: 'SUCCESS' },
-  { name: 'build', status: 'SUCCESS' },
-];
-
 export default function JobRunsTimeline() {
   const [selectedJob, setSelectedJob] = useState<number | null>(null);
+  const { data, loading, isConnected } = useVMData();
+
+  // Map API status to our status format
+  const mapStatus = (status: string): 'RUNNING' | 'SUCCESS' | 'FAILED' => {
+    const lowerStatus = status.toLowerCase();
+    if (lowerStatus === 'queued' || lowerStatus === 'in_progress') return 'RUNNING';
+    if (lowerStatus === 'completed' || lowerStatus === 'success') return 'SUCCESS';
+    return 'FAILED';
+  };
+
+  // Get jobs from API data or show placeholder
+  const jobs = data?.queued_jobs.map(job => ({
+    name: job.name,
+    status: mapStatus(job.status)
+  })) || [];
+
+  // Determine what jobs to display
+  const displayJobs = jobs.length > 0 ? jobs : [
+    { name: loading ? 'Loading...' : 'No jobs queued', status: 'RUNNING' as const }
+  ];
+
   return (
     <div className="flex flex-col gap-[18px] items-start w-full">
       <h2 className="text-xl text-[#9e9e9e] underline w-full">
         JOB RUNS TIMELINE
       </h2>
       <div className="flex flex-col gap-2.5 h-[289px] items-center overflow-y-auto overflow-x-hidden w-full py-2 px-1">
-        {jobs.map((job, index) => {
+        {displayJobs.map((job, index) => {
           const icon = job.status === 'RUNNING' ? iconRunning : job.status === 'SUCCESS' ? iconSuccess : iconFailed;
           const statusBg = job.status === 'RUNNING' ? 'bg-[#2f3211]' : job.status === 'SUCCESS' ? 'bg-[#203257]' : 'bg-[#3e1429]';
           const statusColor = job.status === 'RUNNING' ? 'text-[#f0fb29]' : job.status === 'SUCCESS' ? 'text-[#3b82f6]' : 'text-[#ec4899]';
