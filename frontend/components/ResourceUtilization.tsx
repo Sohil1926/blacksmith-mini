@@ -55,7 +55,7 @@ export default function ResourceUtilization() {
     });
 
     return (
-      <div className="flex-1 bg-[#2a2a2a] flex flex-col gap-[25px] p-5 rounded overflow-hidden">
+      <div className="flex-1 bg-[rgba(0,0,0,0.2)] flex flex-col gap-[25px] px-5 py-3 rounded overflow-hidden">
         <p className="font-medium text-base text-[#9e9e9e] whitespace-nowrap">
           {title}
         </p>
@@ -161,11 +161,11 @@ export default function ResourceUtilization() {
   };
 
   return (
-    <div className="flex flex-col items-start gap-[23px] w-full">
-      <h2 className="text-xl text-[#9e9e9e] w-full">
-        <span className="font-medium">RESOURCE</span> UTILIZATION
-      </h2>
-      <div className="flex flex-col lg:flex-row gap-[10px] w-full">
+    <div className="flex flex-col items-start gap-[16px] w-full">
+      <p className="text-base text-[#9e9e9e] h-[26px] w-full">
+        <span className="font-medium">RESOURCE</span><span className="font-normal"> UTILIZATION</span>
+      </p>
+      <div className="flex gap-[10px] items-start overflow-clip relative w-full">
         <ChartContainer
           title="CPU Usage"
           data={cpuData}

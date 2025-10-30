@@ -1,20 +1,20 @@
 export default function Header() {
   return (
-    <div className="bg-black border-b border-[#2a2a2a] w-full dotted-pattern h-[112px]">
-      <div className="flex items-center justify-center w-full max-w-[1512px] mx-auto px-4 sm:px-6 h-full">
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-2 sm:gap-4 lg:gap-8 flex-1 w-full max-w-full">
-          <div className="flex items-center gap-2.5 shrink">
-            <h1 className="font-medium text-xl sm:text-2xl lg:text-4xl text-[#fafafa] text-center break-words">
+    <div className="absolute bg-black border-b border-[#2a2a2a] h-[83px] left-0 top-[88px] w-full dotted-pattern">
+      <div className="flex gap-2.5 h-[83px] items-center justify-center overflow-clip px-[22px] py-2.5 relative w-full">
+        <div className="flex gap-[357px] flex-1 h-full items-center justify-center relative">
+          <div className="flex flex-col items-start justify-center relative shrink-0 w-[458px]">
+            <p className="font-medium text-[36px] text-[#fafafa] whitespace-nowrap">
               GitHub Actions Analytics
-            </h1>
+            </p>
           </div>
-          <div className="flex items-center justify-center gap-2.5 shrink-0">
-            <p className="font-medium text-base sm:text-lg lg:text-xl text-[#fafafa] whitespace-nowrap">
+          <div className="flex gap-2.5 flex-1 h-[52px] items-center justify-center relative">
+            <p className="font-medium text-xl text-[#fafafa] whitespace-nowrap">
               /blacksmith-mini
             </p>
           </div>
-          <div className="flex items-center justify-center sm:justify-end gap-2.5 shrink-0">
-            <p className="font-medium text-base sm:text-lg lg:text-xl text-[#fafafa] whitespace-nowrap">
+          <div className="flex gap-2.5 flex-1 items-center justify-end relative">
+            <p className="font-medium text-xl text-[#fafafa] whitespace-nowrap">
               TODAY
             </p>
           </div>

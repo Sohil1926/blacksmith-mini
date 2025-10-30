@@ -10,26 +10,38 @@ import SystemsOperational from "@/components/SystemsOperational";
 
 export default function Dashboard() {
   return (
-    <div className="flex flex-col items-start w-full">
-        <NavBanner />
-        <Header />
-        <div className="flex flex-col items-start gap-5 w-full max-w-[1512px] px-4 sm:px-6 py-10 mx-auto">
-          <div className="flex flex-col lg:flex-row items-stretch justify-center gap-5 sm:gap-7 w-full">
-            <SystemOverview />
-            <JobRunsTimeline />
-          </div>
-          <div className="flex flex-col lg:flex-row items-stretch justify-center gap-5 sm:gap-7 w-full">
-            <TestTimingBreakdown />
-            <VMIdentity />
-            <NetworkStats />
-          </div>
-          <ResourceUtilization />
+    <div className="bg-black flex flex-col gap-[8px] items-start pb-[40px] pt-[193px] px-[24px] relative w-full min-h-screen">
+      <NavBanner />
+      <Header />
 
-          {/* Systems Operational - Bottom Left Aligned */}
-          <div className="w-full">
-            <SystemsOperational />
-          </div>
+      {/* First Stats Container */}
+      <div className="flex flex-wrap gap-[24px] items-start justify-center overflow-clip relative shrink-0 w-full">
+        <SystemOverview />
+        <JobRunsTimeline />
+      </div>
+
+      {/* Divider Line */}
+      <div className="h-0 border-t border-[#2a2a2a] relative shrink-0 w-full" />
+
+      {/* Second Stats Container */}
+      <div className="flex flex-wrap gap-[24px] items-start justify-center overflow-clip relative shrink-0 w-full">
+        <TestTimingBreakdown />
+        <div className="flex gap-[24px] items-center flex-1">
+          <VMIdentity />
+          <NetworkStats />
         </div>
+      </div>
+
+      {/* Divider Line */}
+      <div className="h-0 border-t border-[#2a2a2a] relative shrink-0 w-full" />
+
+      {/* Resource Utilization */}
+      <ResourceUtilization />
+
+      {/* Systems Operational - Bottom */}
+      <div className="w-full">
+        <SystemsOperational />
+      </div>
     </div>
   );
 }
